@@ -6,6 +6,7 @@ import sys
 from typing import Any, List, Optional, Union
 
 from dotenv import load_dotenv
+from security import safe_command
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 fine_tuning_dir = os.path.abspath(os.path.join(current_dir, '..'))
@@ -47,8 +48,7 @@ def setup_generative_data_prep(force_gen_data_prep_install: bool = False) -> Non
     else:
         # init and update generative data preparation submodule
         command = ['git', 'submodule', 'update', '--recursive', '--init', generative_data_prep_dir]
-        response = subprocess.run(
-            command,
+        response = safe_command.run(subprocess.run, command,
             capture_output=True,
             text=True,
         )
@@ -63,8 +63,7 @@ def setup_generative_data_prep(force_gen_data_prep_install: bool = False) -> Non
 
         # install generative data preparation module
         command = ['pip', 'install', generative_data_prep_dir]
-        response = subprocess.run(
-            command,
+        response = safe_command.run(subprocess.run, command,
             capture_output=True,
             text=True,
         )
@@ -142,8 +141,7 @@ def run_generative_data_prep_pipeline(
     if apply_chat_template:
         command.append('--apply_chat_template')
 
-    response = subprocess.run(
-        command,
+    response = safe_command.run(subprocess.run, command,
         capture_output=True,
         text=True,
     )

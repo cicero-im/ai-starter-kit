@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from jinja2 import meta
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from packaging import version
+from security import safe_command
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 utils_dir = os.path.abspath(os.path.join(current_dir, '..', '..'))
@@ -323,7 +324,7 @@ class BYOC(SnsdkWrapper):
             for i in range(retries + 1):
                 # execute snapi import model create command
                 logging.info(f'running snapi upload command:\n {" ".join(command)}\nThis could take a while')
-                snapi_response = subprocess.run(command, capture_output=True, text=True)
+                snapi_response = safe_command.run(subprocess.run, command, capture_output=True, text=True)
 
                 # check if errors in execution
                 errors_response = (
