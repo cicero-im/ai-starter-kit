@@ -2,7 +2,6 @@ import re
 from typing import List, Optional, Set, Tuple
 
 import pandas
-import requests
 import streamlit
 import yfinance
 from bs4 import BeautifulSoup
@@ -16,6 +15,7 @@ from financial_assistant.src.retrieval import get_qa_response
 from financial_assistant.src.tools import coerce_str_to_list
 from financial_assistant.src.tools_stocks import retrieve_symbol_list
 from financial_assistant.src.utilities import get_logger
+from security import safe_requests
 
 RETRIEVE_HEADLINES = False
 
@@ -95,7 +95,7 @@ def retrieve_text_yahoo_finance_news(link_urls: List[str]) -> None:
     # Loop through the links to visit each page and extract headlines
     for link_url in link_urls:
         # Send an HTTP GET request to the link
-        link_response = requests.get(link_url)
+        link_response = safe_requests.get(link_url)
         if link_response.status_code == 200:
             # Parse the content of the link's page
             soup = BeautifulSoup(link_response.content, 'html.parser')
@@ -222,7 +222,7 @@ def get_url_list(symbol_list: Optional[List[str]] = None) -> List[str]:
     # Webscraping by url
     for url in general_urls + singular_urls:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = safe_requests.get(url)
 
         # Check if the request was successful
         if response.status_code == 200:

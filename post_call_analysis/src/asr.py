@@ -1,5 +1,6 @@
 import os
 import sys
+from security import safe_requests
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
@@ -104,7 +105,7 @@ class BatchASRProcessor:
             requests.Response: The response from the GET request.
 
         """
-        response = requests.get(url, params=params, headers=self.headers)
+        response = safe_requests.get(url, params=params, headers=self.headers)
 
         if response.status_code == 200:
             logging.info('GET request successful!')

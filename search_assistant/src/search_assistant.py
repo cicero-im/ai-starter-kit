@@ -18,6 +18,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import AsyncHtmlLoader, UnstructuredURLLoader
 from langchain_community.document_transformers import Html2TextTransformer
 from langchain_core.language_models.llms import LLM
+from security import safe_requests
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
@@ -305,7 +306,7 @@ class SearchAssistant:
         params = {'lang': 'EN', 'limit': limit, 'text': query}
 
         try:
-            response = requests.get(url, params=params)  # type: ignore
+            response = safe_requests.get(url, params=params)  # type: ignore
             if response.status_code == 200:
                 results = response.json()
                 if len(results) > 0:
