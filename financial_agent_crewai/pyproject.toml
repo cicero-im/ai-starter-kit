@@ -21,7 +21,8 @@ dependencies = [
     "sec-downloader==0.12.1",
     "streamlit==1.42.2",
     "weasyprint==64.1",
-    "yfinance==0.2.54"
+    "yfinance==0.2.54",
+    "fickling>=0.1.3,~=0.1.0"
 ]
 
 [project.scripts]
