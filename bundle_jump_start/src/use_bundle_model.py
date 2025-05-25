@@ -120,7 +120,7 @@ def get_expert(
             ),
             headers=headers,
             json=data,
-        )
+        timeout=60)
         response.raise_for_status()
         return response.json()
     else:

@@ -69,7 +69,7 @@ class MixpanelEvents:
             }
             payload = {k: v for k, v in payload.items() if v is not None}
             headers = {'Content-Type': 'application/json', 'Accept': 'text/plain'}
-            response = requests.post(self.url, json=[payload], headers=headers)
+            response = requests.post(self.url, json=[payload], headers=headers, timeout=60)
 
     def input_submitted(
         self, submission_type: Optional[str] = None, extra_properties: Optional[Dict[str, Any]] = None

@@ -80,7 +80,7 @@ class TestS3Functions(unittest.TestCase):
         image_url = 'https://sambanova.ai/hubfs/logotype_sambanova_orange.png'
 
         # Download the image
-        response = requests.get(image_url)
+        response = requests.get(image_url, timeout=60)
         image_content = response.content
 
         # Save the image to S3

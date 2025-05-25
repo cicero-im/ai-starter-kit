@@ -238,7 +238,7 @@ class SearchAssistant:
         headers = {'X-API-KEY': os.environ.get('SERPER_API_KEY'), 'Content-Type': 'application/json'}
 
         try:
-            response = requests.post(url, headers=headers, data=payload)
+            response = requests.post(url, headers=headers, data=payload, timeout=60)
             if response.status_code == 200:
                 results = response.json().get('organic', [])
                 if len(results) > 0:
@@ -305,7 +305,7 @@ class SearchAssistant:
         params = {'lang': 'EN', 'limit': limit, 'text': query}
 
         try:
-            response = requests.get(url, params=params)  # type: ignore
+            response = requests.get(url, params=params, timeout=60)  # type: ignore
             if response.status_code == 200:
                 results = response.json()
                 if len(results) > 0:

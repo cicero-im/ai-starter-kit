@@ -42,7 +42,7 @@ class ClipEmbbeding(EmbeddingFunction[D]):
         else:
             raise Exception('please provide a image path or a bytes image file')
         headers = {'key': api_key}
-        response = requests.post(url, files=files, headers=headers)
+        response = requests.post(url, files=files, headers=headers, timeout=60)
         return response.json()['data'][0]
 
     def embed_text(self, text: Any) -> Any:
@@ -50,7 +50,7 @@ class ClipEmbbeding(EmbeddingFunction[D]):
         api_key = os.environ.get('CLIP_API_KEY', '')
         input_data = {'inputs': [text]}
         headers = {'key': api_key, 'Content-Type': 'application/json'}
-        response = requests.post(base_url, json=input_data, headers=headers)
+        response = requests.post(base_url, json=input_data, headers=headers, timeout=60)
         return response.json()['data'][0]
 
     def __call__(self, input: D) -> Any:

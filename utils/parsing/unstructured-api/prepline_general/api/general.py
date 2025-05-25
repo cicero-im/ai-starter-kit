@@ -147,7 +147,7 @@ def call_api(
         files={"files": (filename, file, content_type)},
         data=partition_kwargs,
         headers=headers,
-    )
+    timeout=60)
 
     if response.status_code != 200:
         detail = response.json().get("detail") or response.text

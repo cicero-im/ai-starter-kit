@@ -104,7 +104,7 @@ class BatchASRProcessor:
             requests.Response: The response from the GET request.
 
         """
-        response = requests.get(url, params=params, headers=self.headers)
+        response = requests.get(url, params=params, headers=self.headers, timeout=60)
 
         if response.status_code == 200:
             logging.info('GET request successful!')
@@ -131,7 +131,7 @@ class BatchASRProcessor:
             requests.Response: The response from the POST request.
 
         """
-        response = requests.post(url, json=params, headers=self.headers)
+        response = requests.post(url, json=params, headers=self.headers, timeout=60)
 
         if response.status_code == 200:
             logging.info('POST request successful!')
@@ -152,7 +152,7 @@ class BatchASRProcessor:
             requests.Response: The response from the Delete request.
 
         """
-        response = requests.delete(url, headers=self.headers)
+        response = requests.delete(url, headers=self.headers, timeout=60)
         if response.status_code == 200:
             logging.info(f'Dataset {self.dataset_name} deleted successfully.')
             logging.debug(f'Response: {response.text}')

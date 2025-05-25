@@ -95,7 +95,7 @@ def retrieve_text_yahoo_finance_news(link_urls: List[str]) -> None:
     # Loop through the links to visit each page and extract headlines
     for link_url in link_urls:
         # Send an HTTP GET request to the link
-        link_response = requests.get(link_url)
+        link_response = requests.get(link_url, timeout=60)
         if link_response.status_code == 200:
             # Parse the content of the link's page
             soup = BeautifulSoup(link_response.content, 'html.parser')
@@ -222,7 +222,7 @@ def get_url_list(symbol_list: Optional[List[str]] = None) -> List[str]:
     # Webscraping by url
     for url in general_urls + singular_urls:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
 
         # Check if the request was successful
         if response.status_code == 200:

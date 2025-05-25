@@ -52,7 +52,7 @@ class YahooFinanceNewsTool(BaseTool):  # type: ignore
                 return f'No news found for company that searched with {ticker_symbol} ticker.'
         else:
             main_url = 'https://finance.yahoo.com/news'
-            response = requests.get(main_url)
+            response = requests.get(main_url, timeout=60)
 
             # Check if the request was successful
             if response.status_code == 200:
@@ -79,7 +79,7 @@ class YahooFinanceNewsTool(BaseTool):  # type: ignore
                 break
 
             # Send a GET request to the URL
-            response = requests.get(url)
+            response = requests.get(url, timeout=60)
 
             # Check if the request was successful
             if response.status_code == 200:

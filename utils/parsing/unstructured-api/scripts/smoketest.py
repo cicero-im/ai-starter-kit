@@ -45,7 +45,7 @@ def send_document(
         API_URL,
         files=files,
         data=options,
-    )
+    timeout=60)
 
 
 @pytest.mark.parametrize(

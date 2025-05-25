@@ -356,8 +356,8 @@ class SambaStudioAPI(BaseAPIEndpoint):
 
         if self.request_config.is_stream_mode:
             with requests.post(
-                url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode
-            ) as response:
+                url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode, 
+            timeout=60) as response:
                 if response.status_code != 200:
                     error_details = response.json().get('error', 'No additional error details provided.')
                     raise Exception(f'Error: {response.status_code}, Details: {error_details}')
@@ -551,7 +551,7 @@ class SambaNovaCloudAPI(BaseAPIEndpoint):
         metrics[common_metrics.REQ_START_TIME] = datetime.now().strftime('%H:%M:%S.%f')
         start_time = event_start_time = time.monotonic()
 
-        with requests.post(url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode) as response:
+        with requests.post(url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode, timeout=60) as response:
             if response.status_code != 200:
                 response.raise_for_status()
             client = sseclient.SSEClient(response) # type: ignore

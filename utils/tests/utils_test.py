@@ -56,7 +56,7 @@ def audio_requests(
         if prompt:
             files['prompt'] = prompt
 
-        response = requests.post(url, headers=headers, files=files, data=data)
+        response = requests.post(url, headers=headers, files=files, data=data, timeout=60)
 
     if response.status_code == 200:
         return response.json()

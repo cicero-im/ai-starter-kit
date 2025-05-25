@@ -79,7 +79,7 @@ class SambastudioMultimodal:
         :return: The base64 encoded string representation of the image.
         :rtype: str
         """
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         try:
             if response.status_code == 200:
                 image_binary = response.content
@@ -236,7 +236,7 @@ class SambastudioMultimodal:
             },
         }
         headers = {'Content-Type': 'application/json', 'key': self.api_key}
-        response = requests.post(self.base_url, headers=headers, data=json.dumps(data))
+        response = requests.post(self.base_url, headers=headers, data=json.dumps(data), timeout=60)
         if response.status_code != 200:
             raise RuntimeError(
                 f'Sambastudio multimodal API call failed with status code {response.status_code}',
@@ -281,7 +281,7 @@ class SambastudioMultimodal:
             data['messages'][0]['content'].append({'type': 'image_url', 'image_url': {'url': image}})
 
         headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
-        response = requests.post(self.base_url, headers=headers, data=json.dumps(data))
+        response = requests.post(self.base_url, headers=headers, data=json.dumps(data), timeout=60)
         if response.status_code != 200:
             raise RuntimeError(
                 f'Sambastudio multimodal API call failed with status code {response.status_code}.',
@@ -325,7 +325,7 @@ class SambastudioMultimodal:
             data['messages'][0]['content'].append({'type': 'image_url', 'image_url': {'url': image}})
 
         headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
-        response = requests.post(self.base_url, headers=headers, data=json.dumps(data), stream=True)
+        response = requests.post(self.base_url, headers=headers, data=json.dumps(data), stream=True, timeout=60)
         if response.status_code != 200:
             raise RuntimeError(
                 f'Sambastudio multimodal API call failed with status code {response.status_code}.',
