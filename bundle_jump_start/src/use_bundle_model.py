@@ -2,7 +2,6 @@ import argparse
 import json
 import logging
 import os
-import random
 import sys
 from datetime import datetime
 from difflib import SequenceMatcher
@@ -21,6 +20,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_core.language_models.llms import LLM
 from tqdm import tqdm
+import secrets
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
@@ -346,14 +346,14 @@ def load_expert_datasets(eval_data_dir: str, num_examples: int, config: Dict[str
 
         samples_to_take = samples_per_file + (1 if i < extra_samples else 0)
         if samples_to_take < len(dataset):
-            dataset = random.sample(dataset, samples_to_take)
+            dataset = secrets.SystemRandom().sample(dataset, samples_to_take)
 
         for item in dataset:
             item['true_expert'] = expert_name
 
         all_examples.extend(dataset)
 
-    random.shuffle(all_examples)
+    secrets.SystemRandom().shuffle(all_examples)
     return all_examples
 
 

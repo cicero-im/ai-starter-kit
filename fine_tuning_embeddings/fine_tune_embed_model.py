@@ -6,7 +6,6 @@ import os
 import pickle  # Import for saving and loading .pkl files
 import sys
 from pathlib import Path
-from random import shuffle
 from typing import Any, List, Tuple, Union
 
 import pandas as pd
@@ -24,6 +23,7 @@ from llama_index.schema import TextNode
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
 from tqdm.auto import tqdm
+import secrets
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = current_dir
@@ -70,7 +70,7 @@ def split_files_into_datasets(
     """
 
     files = glob.glob(f'{input_data_directory}/**/*.{file_extension}', recursive=True)
-    shuffle(files)
+    secrets.SystemRandom().shuffle(files)
 
     print(files)
 

@@ -1,7 +1,6 @@
 import abc
 import json
 import os
-import random
 import re
 import threading
 import time
@@ -11,6 +10,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import joblib
 import yaml
+import secrets
 
 file_location = Path(__file__).parent.resolve()
 kit_location = os.path.join(file_location, '../..')
@@ -555,7 +555,7 @@ class CustomPerformanceEvaluator(BasePerformanceEvaluator):
             This function uses threading to send requests concurrently. It splits the total request count evenly among
             the threads. If there is a remainder, it assigns one extra request to the first threads.
         """
-        random.seed(11111)
+        secrets.SystemRandom().seed(11111)
 
         request_configs = self.build_request_configs(
             sampling_params,
@@ -945,7 +945,7 @@ class SyntheticPerformanceEvaluator(BasePerformanceEvaluator):
         Raises:
             Exception: If an unexpected error occurs during the execution of requests.
         """
-        random.seed(11111)
+        secrets.SystemRandom().seed(11111)
 
         # Build the request config objects that are to be sent to the LLM API endpoint
         request_configs = self.build_request_configs(num_requests, num_input_tokens, num_output_tokens, sampling_params)
@@ -1210,9 +1210,9 @@ class RealWorkLoadPerformanceEvaluator(BasePerformanceEvaluator):
     def _get_wait_time(self) -> float:
         mean_wait = 1 / self.qps
         if self.qps_distribution == 'exponential':
-            wait = random.expovariate(1 / mean_wait)
+            wait = secrets.SystemRandom().expovariate(1 / mean_wait)
         elif self.qps_distribution == 'uniform':
-            wait = random.uniform(0, 2 * mean_wait)
+            wait = secrets.SystemRandom().uniform(0, 2 * mean_wait)
         elif self.qps_distribution == 'constant':
             wait = mean_wait
         else:
@@ -1248,7 +1248,7 @@ class RealWorkLoadPerformanceEvaluator(BasePerformanceEvaluator):
         Raises:
             Exception: If an unexpected error occurs during the execution of requests.
         """
-        random.seed(11111)
+        secrets.SystemRandom().seed(11111)
 
         # Build the request config objects that are to be sent to the LLM API endpoint
         request_configs = self.build_request_configs(num_requests, num_input_tokens, num_output_tokens, sampling_params)

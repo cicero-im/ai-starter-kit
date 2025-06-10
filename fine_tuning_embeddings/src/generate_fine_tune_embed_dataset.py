@@ -3,7 +3,6 @@ import glob
 import json
 import logging
 import os
-import random
 import re
 import sys
 import uuid
@@ -14,6 +13,7 @@ from llama_index.llms import LangChainLLM
 from llama_index.node_parser import SimpleNodeParser
 from llama_index.schema import MetadataMode
 from tqdm import tqdm
+import secrets
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
@@ -55,7 +55,7 @@ class CorpusLoader:
             Tuple containing lists of training and validation file paths.
         """
         pdf_files = glob.glob(f'{self.directory}/*.pdf')
-        random.shuffle(pdf_files)
+        secrets.SystemRandom().shuffle(pdf_files)
         split_index = int(len(pdf_files) * (1 - self.val_ratio))
         return pdf_files[:split_index], pdf_files[split_index:]
 
