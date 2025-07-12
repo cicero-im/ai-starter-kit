@@ -11,6 +11,7 @@ import yaml
 from dotenv import load_dotenv
 from snapi.snapi import USER_AGENT  # type: ignore
 from snsdk import SnSdk  # type: ignore
+from security import safe_command
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 utils_dir = os.path.abspath(os.path.join(current_dir, '..', '..'))
@@ -651,7 +652,7 @@ class SnsdkWrapper:
             )
             logging.info(f'running snapi add dataset command:\n {" ".join(command)}\nThis could take a while')
             echo_response = subprocess.run(['echo', 'yes'], capture_output=True, text=True)
-            snapi_response = subprocess.run(command, input=echo_response.stdout, capture_output=True, text=True)
+            snapi_response = safe_command.run(subprocess.run, command, input=echo_response.stdout, capture_output=True, text=True)
 
             errors_response = (
                 ('status_code' in snapi_response.stdout.lower()) and ('error occured' in snapi_response.stdout.lower())

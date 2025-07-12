@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from langchain.docstore.document import Document
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from security import safe_command
 
 load_dotenv()
 
@@ -55,7 +56,7 @@ class SambaParse:
         # Delete contents of the output directory using shell command
         del_command = f'rm -rf {output_dir}/*'
         logger.info(f'Deleting contents of output directory: {output_dir}')
-        subprocess.run(del_command, shell=True, check=True)
+        safe_command.run(subprocess.run, del_command, shell=True, check=True)
 
         command = [
             'unstructured-ingest',
@@ -236,7 +237,7 @@ class SambaParse:
         logger.info(f'Running command: {command_str}')
         logger.info('This may take some time depending on the size of your data. Please be patient...')
 
-        subprocess.run(command_str, shell=True, check=True)
+        safe_command.run(subprocess.run, command_str, shell=True, check=True)
 
         logger.info('Ingest process completed successfully!')
 
