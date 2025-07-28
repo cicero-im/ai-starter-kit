@@ -11,6 +11,7 @@ from urllib3.exceptions import ConnectionError
 
 from financial_agent_crewai.src.financial_agent_flow.config import *
 from financial_agent_crewai.src.financial_agent_flow.tools.general_tools import FilenameOutput, get_html_text
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +80,7 @@ class YahooFinanceNewsTool(BaseTool):  # type: ignore
                 break
 
             # Send a GET request to the URL
-            response = requests.get(url)
+            response = safe_requests.get(url)
 
             # Check if the request was successful
             if response.status_code == 200:

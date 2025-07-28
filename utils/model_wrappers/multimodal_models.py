@@ -9,6 +9,7 @@ from typing import Any, Dict, Generator, Iterator, List, Optional, Union
 
 import requests
 import sseclient
+from security import safe_requests
 
 
 class SambastudioMultimodal:
@@ -79,7 +80,7 @@ class SambastudioMultimodal:
         :return: The base64 encoded string representation of the image.
         :rtype: str
         """
-        response = requests.get(url)
+        response = safe_requests.get(url)
         try:
             if response.status_code == 200:
                 image_binary = response.content
