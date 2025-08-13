@@ -24,6 +24,7 @@ from llama_index.schema import TextNode
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
 from tqdm.auto import tqdm
+import fickling
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = current_dir
@@ -123,7 +124,7 @@ def save_nodes_to_pkl(nodes: Any, file_path: str) -> None:
 
 def load_nodes_from_pkl(file_path: str) -> Any:
     with open(file_path, 'rb') as f:
-        nodes = pickle.load(f)
+        nodes = fickling.load(f)
     return nodes
 
 
