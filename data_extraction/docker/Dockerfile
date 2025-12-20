@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.13.11
 RUN python3 -m pip install -U pip
 RUN apt update \
     && apt install ffmpeg libsm6 libxext6  -y \
