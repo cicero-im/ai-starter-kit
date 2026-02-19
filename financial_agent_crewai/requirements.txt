@@ -1,5 +1,5 @@
 langchain-chroma==0.2.2
-langchain-core==0.3.41
+langchain-core==1.2.11
 langchain-huggingface==0.1.2
 langchain-sambanova==0.1.2
 langtrace-python-sdk==3.8.0
@@ -13,5 +13,5 @@ python-dotenv==1.0.1
 schedule==1.2.2
 sec-downloader==0.12.1
 streamlit==1.42.2
-weasyprint==64.1
+weasyprint==68.0
 yfinance==0.2.54
