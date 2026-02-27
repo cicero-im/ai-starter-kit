@@ -74,7 +74,7 @@ matplotlib-inline==0.1.7
 mistune==3.1.0
 multitasking==0.0.11
 nbclient==0.10.2
-nbconvert==7.16.5
+nbconvert==7.17.0
 nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.3.2
@@ -89,11 +89,11 @@ pandocfilters==1.5.1
 parso==0.8.4
 peewee==3.17.8
 pexpect==4.9.0
-pillow==11.1.0
+pillow==12.1.1
 platformdirs==4.3.6
 prometheus_client==0.21.1
 prompt_toolkit==3.0.48
-protobuf==4.25.5
+protobuf==5.29.6
 psutil==6.1.1
 ptyprocess==0.7.0
 pure_eval==0.2.3
