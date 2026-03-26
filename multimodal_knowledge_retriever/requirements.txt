@@ -9,7 +9,7 @@ langchain-huggingface==0.1.2
 langchain-sambanova==0.1.0
 langchain-milvus==0.1.7rc2
 mypy==1.11.2
-nltk==3.8.1
+nltk==3.9.4
 pre-commit==4.0.1
 pydantic==2.9.2
 pydantic_core==2.23.4
