@@ -62,7 +62,7 @@ mdurl==0.1.2
 mistune==3.1.1
 multidict==6.1.0
 nbclient==0.10.2
-nbconvert==7.16.6
+nbconvert==7.17.1
 nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.3.2
@@ -87,7 +87,7 @@ pydantic==2.10.6
 pydantic_core==2.27.2
 Pygments==2.19.1
 python-dateutil==2.9.0.post0
-python-dotenv==1.0.1
+python-dotenv==1.2.2
 python-json-logger==3.2.1
 pytz==2025.1
 PyYAML==6.0.2
