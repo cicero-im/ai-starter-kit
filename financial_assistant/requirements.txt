@@ -10,7 +10,7 @@ pandasai==2.4.2
 pre-commit==4.0.1
 pydantic==2.9.2
 pypdf>=4.0.1,<6.0.0
-python-dotenv==1.0.1
+python-dotenv==1.2.2
 ruff==0.6.9
 schedule==1.2.2
 sentence-transformers==3.3.1
