@@ -14,7 +14,7 @@ autogen-core==0.4.2
 autogen-ext==0.4.2
 babel==2.16.0
 beautifulsoup4==4.12.3
-bleach==6.2.0
+bleach==6.4.0
 bs4==0.0.2
 certifi==2024.12.14
 cffi==1.17.1
