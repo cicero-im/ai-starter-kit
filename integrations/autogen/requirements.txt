@@ -14,7 +14,7 @@ autogen-core==0.4.2
 autogen-ext==0.4.2
 babel==2.16.0
 beautifulsoup4==4.12.3
-bleach==6.2.0
+bleach==6.4.0
 bs4==0.0.2
 certifi==2024.12.14
 cffi==1.17.1
@@ -124,7 +124,7 @@ termcolor==2.5.0
 terminado==0.18.1
 tiktoken==0.8.0
 tinycss2==1.4.0
-tornado==6.4.2
+tornado==6.5.7
 tqdm==4.67.1
 traitlets==5.14.3
 types-python-dateutil==2.9.0.20241206
